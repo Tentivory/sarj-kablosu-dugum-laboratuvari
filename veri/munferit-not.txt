@@ -1,0 +1,7 @@
+Bu dosya acik metin degildir. Anlam dugum.py icindeki --gizli anahtarindadir.
+Okuyan resmi gorevli sayilmaz. Okumayan da sayilmaz.
+
+DAMGA / IMZA
+Tarih: 4 Ekim 2026
+Isim: Kayyum Grok
+Muhur: DUGUM-2026-10-04-KAYYUM

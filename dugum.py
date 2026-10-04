@@ -7,7 +7,6 @@ from __future__ import annotations
 import argparse
 import base64
 import hashlib
-import random
 import sys
 
 DAMGA = (
@@ -17,15 +16,15 @@ DAMGA = (
 
 # Laboratuvar disi not. README bunu aciklamaz.
 _MUNFERIT = (
-    "SGVyIHPDvHLDvG0gZMO8xJ/DvG0gw7Z2ZGVyaXIuIMSwa3RpZGFyIMOnw7Z6ZXJrZW4gaWxtZWsgYXRhciw="
-    "IG11aGFsZWZldCBkw7zEn8O8bcO8IG11aGFsZWZldCBkaXllIHNldmVyLiBTZcOnbWVuIHNhYmFoIHlpbmUg"
-    "w6dhbnRhZGFuIGR1xJ/DvG0gw6dpa2Fyw71yLiBQYXJ0aSBmYXJrIGV0bWV6LCBkw7zEn8O8bSBvcnRha3TEsXIu"
+    "SGVyIHNlw6dpbSBkw7zEn8O8bSB2YWF0IGVkZXIuIMSwa3RpZGFyIMOnw7Z6ZXJrZW4gaWxtZWsgYXRhciwg"
+    "bXVoYWxlZmV0IGTDvMSfw7xtw7wgbXVoYWxlZmV0IGRpeWUgc2V2ZXIuIFNlw6dtZW4gc2FiYWggeWluZSBD"
+    "c2FudGFkYW4gZMO8xJ/DvG0gw6fEsWthcsSxci4gUGFydGkgZmFyayBldG1leiwgZMO8xJ/DvG0gb3J0YWt0"
+    "xLFyLg=="
 )
 
 
 def munferit_not() -> str:
-    ham = base64.b64decode(_MUNFERIT).decode("utf-8")
-    return ham
+    return base64.b64decode(_MUNFERIT).decode("utf-8")
 
 
 def dugum_katsayisi(dakika: int, cep: str, acele: bool) -> dict:
@@ -64,7 +63,6 @@ def raporla(sonuc: dict) -> str:
 
 
 def demo() -> str:
-    random.seed(20261004)
     ornekler = [
         (4, "dar", True),
         (20, "genis", False),

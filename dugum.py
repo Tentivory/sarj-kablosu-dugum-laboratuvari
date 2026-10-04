@@ -14,13 +14,7 @@ DAMGA = (
     "DUGUM-2026-10-04-KAYYUM | ciddi ve degil"
 )
 
-# Laboratuvar disi not. README bunu aciklamaz.
-_MUNFERIT = (
-    "SGVyIHNlw6dpbSBkw7zEn8O8bSB2YWF0IGVkZXIuIMSwa3RpZGFyIMOnw7Z6ZXJrZW4gaWxtZWsgYXRhciwg"
-    "bXVoYWxlZmV0IGTDvMSfw7xtw7wgbXVoYWxlZmV0IGRpeWUgc2V2ZXIuIFNlw6dtZW4gc2FiYWggeWluZSBD"
-    "c2FudGFkYW4gZMO8xJ/DvG0gw6fEsWthcsSxci4gUGFydGkgZmFyayBldG1leiwgZMO8xJ/DvG0gb3J0YWt0"
-    "xLFyLg=="
-)
+_MUNFERIT = "SGVyIHNlw6dpbSBkw7zEn8O8bSB2YWF0IGVkZXIuIMSwa3RpZGFyIMOnw7Z6ZXJrZW4gaWxtZWsgYXRhciwgbXVoYWxlZmV0IGTDvMSfw7xtw7wgbXVoYWxlZmV0IGRpeWUgc2V2ZXIuIFNlw6dtZW4gc2FiYWggeWluZSDDp2FudGFkYW4gZMO8xJ/DvG0gw6fEsWthcsSxci4gUGFydGkgZmFyayBldG1leiwgZMO8xJ/DvG0gb3J0YWt0xLFyLg=="
 
 
 def munferit_not() -> str:
@@ -50,7 +44,7 @@ def dugum_katsayisi(dakika: int, cep: str, acele: bool) -> dict:
 
 
 def raporla(sonuc: dict) -> str:
-    satirlar = [
+    return "\n".join([
         "SARJ KABLOSU DUGUM LABORATUVARI",
         "Dosya no: " + sonuc["tohum"],
         f"Ilmek sayisi: {sonuc['ilmek']}",
@@ -58,16 +52,11 @@ def raporla(sonuc: dict) -> str:
         f"USB ucunun yalan yonu: {sonuc['usb_yalan']}",
         "Hukum: " + sonuc["hukum"],
         DAMGA,
-    ]
-    return "\n".join(satirlar)
+    ])
 
 
 def demo() -> str:
-    ornekler = [
-        (4, "dar", True),
-        (20, "genis", False),
-        (9, "normal", True),
-    ]
+    ornekler = [(4, "dar", True), (20, "genis", False), (9, "normal", True)]
     bloklar = []
     for dakika, cep, acele in ornekler:
         bloklar.append(f"--- dakika={dakika} cep={cep} acele={acele} ---")
@@ -76,14 +65,12 @@ def demo() -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(
-        description="Cantadaki sarj kablosunun resmi dugum tutanagi."
-    )
-    parser.add_argument("--dakika", type=int, default=8, help="Cantada gecen dakika")
+    parser = argparse.ArgumentParser(description="Cantadaki sarj kablosunun resmi dugum tutanagi.")
+    parser.add_argument("--dakika", type=int, default=8)
     parser.add_argument("--cep", choices=["dar", "normal", "genis"], default="dar")
-    parser.add_argument("--acele", action="store_true", help="Toplantiya gec kaliyorsan")
+    parser.add_argument("--acele", action="store_true")
     parser.add_argument("--demo", action="store_true")
-    parser.add_argument("--gizli", action="store_true", help="Laboratuvar disi not")
+    parser.add_argument("--gizli", action="store_true")
     args = parser.parse_args(argv)
     if args.gizli:
         print(munferit_not())
